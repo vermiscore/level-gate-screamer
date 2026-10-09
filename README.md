@@ -28,7 +28,7 @@ Tube Screamer-style overdrive with a level gate: attenuates below threshold, boo
 
 ### Schematic
 ![](images/schematic-1.png)
-Labeled as 'OTA boost', but this isn't an OTA.
+Labeled as "OTA boost", but this isn't an OTA.
 ### Level gate concept
 ![](images/xcos_system.png)
 
