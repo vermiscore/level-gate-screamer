@@ -1,5 +1,6 @@
 # level-gate-screamer
 Tube Screamer-style overdrive with a level gate: attenuates below threshold, boosts above
+
 > [!WARNING]
 > **v1: J2/J3 footprints are rotated 180°.**
 > Fix with jumpers on the bottom side:
