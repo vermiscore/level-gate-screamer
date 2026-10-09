@@ -1,4 +1,0 @@
-.subckt POT_MODEL 1 2 3
-R_pot_a 1 3 250k
-R_pot_b 3 2 250k
-.ends POT_MODEL

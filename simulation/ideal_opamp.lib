@@ -1,3 +1,0 @@
-.subckt IDEALOPAMP inp inn out
-Egain out 0 inp inn 200k
-.ends
