@@ -29,3 +29,10 @@ Tube Screamer-style overdrive with a level gate: attenuates below threshold, boo
 
 ### Simulation: input below threshold (attenuated)
 ![](images/output_decayed.png)
+
+## References
+- [UC3Music/IceScreamer](https://github.com/UC3Music/IceScreamer) — base Tube Screamer design and footprints
+- [PCB Guitar Mania: No-Noise Gate building docs (PDF)](https://pcbguitarmania.com/wp-content/uploads/2018/07/No-Noise-Gate-1.2v-Building-Docs.pdf) — JFET noise gate circuit
+- Boss NS-2 — gate idea: detect on the dry signal, mute after the gain stage
+- [ElectroSmash: Tube Screamer Analysis](https://www.electrosmash.com/tube-screamer-analysis)
+- 
