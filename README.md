@@ -8,6 +8,13 @@ Tube Screamer-style overdrive with a level gate: attenuates below threshold, boo
 > - J3: 1–6, 4–2
 >
 > Next revision: rotate J2/J3 so the big protrusion faces the board edge.
+
+## Files
+- `kicad_files/` — KiCad project
+- `fabrication/` — Gerber, BOM, CPL for JLCPCB
+- `hand_soldered_parts/` — parts not assembled by JLCPCB
+- `simulation/` — ngspice netlist
+
 ## Images
 
 ### Finished PCB
