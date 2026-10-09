@@ -37,5 +37,4 @@ Tube Screamer-style overdrive with a level gate: attenuates below threshold, boo
 - [PCB Guitar Mania: No-Noise Gate building docs (PDF)](https://pcbguitarmania.com/wp-content/uploads/2018/07/No-Noise-Gate-1.2v-Building-Docs.pdf) — noise gate
 - [Elliott Sound Products: VCA Techniques Investigated](https://sound-au.com/articles/vca-techniques.html) — JFET VCA (Figure B)
 - Boss NS-2 — gate idea: detect on the dry signal, mute after the gain stage
-- 
-- 
+
