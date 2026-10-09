@@ -1,0 +1,68 @@
+* =============================================================
+* pot_log.lib
+* Logarithmic (audio-taper) potentiometer model for ngspice / KiCad
+* =============================================================
+*
+* Unlike a simple fixed-resistor stand-in, this model takes the wiper
+* rotation position as a parameter, so sweeping POS from 0 to 1
+* reproduces how the resistance divider actually changes as you turn
+* the knob -- including the non-linear "audio taper" curve.
+*
+* Pins:
+*   A - end terminal 1
+*   W - wiper (center) terminal
+*   B - end terminal 2
+*
+* Parameters:
+*   RTOTAL - total end-to-end resistance of the pot (e.g. 500k)
+*   POS    - wiper position, 0.0 (fully at A) .. 1.0 (fully at B)
+*   K      - taper exponent.
+*              K=1    -> linear taper (same as a plain linear pot)
+*              K~3.32 -> standard "audio"/log taper
+*                        (50% rotation gives ~10% of total resistance,
+*                        since 0.5^3.32 ~= 0.1)
+*            Tune K to match the datasheet's rotation-vs-resistance
+*            curve if you have one; higher K = more of the change is
+*            crammed into the last part of the rotation.
+*   RMIN   - small floor resistance at each end, avoids a 0-ohm branch
+*            at POS=0 or POS=1 which can cause convergence issues
+*
+* Usage in a .cir file:
+*   .include pot_log.lib
+*   XPOT_TH A_node W_node B_node POT_LOG PARAMS: RTOTAL=500k POS=0.5 K=3.32
+*
+* Usage from KiCad's Simulation Model Editor (per-symbol):
+*   Model:   SUBCKT
+*   Library: pot_log.lib
+*   Name:    POT_LOG
+*   Pin Assignments (map to your symbol's actual pin numbering):
+*       Symbol Pin 1 -> A
+*       Symbol Pin 2 -> B
+*       Symbol Pin 3 -> W      (do NOT leave this as "Not Connected")
+*   Sim.Params: RTOTAL=500k POS=0.5 K=3.32
+*
+* To sweep rotation in spice_eval.py or a manual .cir, just override
+* POS at the top level (e.g. via .param POS=... and .step param POS
+* list 0 0.1 0.2 ... 1.0) instead of hand-editing two resistor values.
+*
+* Which end is "A" vs "B" only affects which direction of rotation
+* (CW vs CCW) makes the resistance rise faster -- it does not change
+* correctness. If the simulated threshold behavior comes out backwards
+* from what you want on the physical knob, swap the A/B connections;
+* no need to touch this file.
+* =============================================================
+
+.subckt POT_LOG A W B PARAMS: RTOTAL=500k POS=0.5 K=3.32 RMIN=10
+R_AW A W R={RTOTAL*(POS**K) + RMIN}
+R_WB W B R={RTOTAL*(1-(POS**K)) + RMIN}
+.ends POT_LOG
+
+* -------------------------------------------------------------
+* Linear-taper version, included for direct A/B comparison against
+* POT_LOG at the same POS value (K=1 case, spelled out explicitly
+* rather than relying on remembering to pass K=1).
+* -------------------------------------------------------------
+.subckt POT_LIN A W B PARAMS: RTOTAL=500k POS=0.5 RMIN=10
+R_AW A W R={RTOTAL*POS + RMIN}
+R_WB W B R={RTOTAL*(1-POS) + RMIN}
+.ends POT_LIN

@@ -1,0 +1,6 @@
+* Simple saturating op-amp macromodel (no POLY, ngspice B-source based)
+* Pins: inp inn vplus vminus out
+* Output saturates ~1.5V inside each supply rail (typical op-amp headroom)
+.subckt OPAMP_SAT inp inn vplus vminus out
+Bout out 0 V = ((V(vplus)-V(vminus))/2 - 1.5) * tanh(200k*(V(inp)-V(inn)) / ((V(vplus)-V(vminus))/2 - 1.5)) + (V(vplus)+V(vminus))/2
+.ends
