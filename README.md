@@ -8,6 +8,10 @@ Tube Screamer-style overdrive with a level gate: attenuates below threshold, boo
 > - J3: 1–6, 4–2
 >
 > Next revision: rotate J2/J3 so the big protrusion faces the board edge.
+>
+> **Output level:** up to ~9 Vpp (rail-to-rail op-amps on 9 V).
+> Check the input range of the next device before connecting.
+> Tested OK with a Neural DSP Nano Cortex.
 
 ## Files
 - `kicad_files/` — KiCad project
@@ -37,6 +41,12 @@ Labeled as "OTA boost", but this isn't an OTA.
 
 ### Simulation: input below threshold (attenuated)
 ![](images/output_decayed.png)
+
+## Impressions
+- Sounds great
+- Easy to play
+- The gate works as intended
+
 
 ## References
 - [UC3Music/IceScreamer](https://github.com/UC3Music/IceScreamer) — base Tube Screamer design and footprints
